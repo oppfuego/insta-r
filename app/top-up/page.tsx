@@ -14,6 +14,7 @@ import {
 import Container from "@/components/layout/Container";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import PaymentMethods from "@/components/ui/PaymentMethods";
 import GuestBlock from "@/components/ui/GuestBlock";
 import { useBalance } from "@/context/BalanceContext";
 import { useAuth } from "@/context/AuthContext";
@@ -314,7 +315,7 @@ export default function TopUpPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                  <div className="flex items-center justify-between rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                  <div className="flex items-center justify-between gap-4 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm max-[480px]:flex-col max-[480px]:items-stretch">
                     <div>
                       <p className="text-sm text-gray-500">Amount to add</p>
                       <p className="text-2xl font-bold text-gray-900">
@@ -322,10 +323,12 @@ export default function TopUpPage() {
                         {displayAmount.toFixed(2)}
                       </p>
                     </div>
+
                     <Button
-                      size="lg"
-                      onClick={handleTestModeTopUp}
-                      disabled={!isValidAmount || loading}
+                        size="lg"
+                        onClick={handleTestModeTopUp}
+                        disabled={!isValidAmount || loading}
+                        className="max-[480px]:w-full"
                     >
                       <Wallet size={18} />
                       {loading ? "Processing..." : "Add Balance"}
@@ -524,9 +527,12 @@ export default function TopUpPage() {
                       {displayAmount.toFixed(2)}
                     </Button>
 
-                    <div className="flex items-center justify-center gap-2 text-xs text-gray-400">
-                      <Lock size={10} />
-                      <span>Secure payment processing</span>
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="flex items-center gap-2 text-xs text-gray-400">
+                        <Lock size={10} />
+                        <span>Secure payment processing</span>
+                      </div>
+                      <PaymentMethods variant="compact" />
                     </div>
                   </div>
                 </div>

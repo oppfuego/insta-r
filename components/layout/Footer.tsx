@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Zap } from "lucide-react";
 import Container from "./Container";
+import PaymentMethods from "@/components/ui/PaymentMethods";
 import { siteConfig } from "@/config/site";
 
 const footerLinks = {
@@ -46,13 +47,7 @@ export default function Footer() {
               The premium platform for social media growth. Boost your presence on Instagram, TikTok, and YouTube with our reliable services.
             </p>
 
-            <div className="mt-6 flex items-center gap-2">
-              {["VISA", "MC", "Apple Pay", "GPay"].map((method) => (
-                <div key={method} className="rounded-lg border border-gray-200 bg-white px-3 py-1.5">
-                  <span className="text-xs font-medium text-gray-500">{method}</span>
-                </div>
-              ))}
-            </div>
+            <PaymentMethods variant="footer" className="mt-6" />
 
             {siteConfig.companyLegalName && (
               <div className="mt-6 space-y-1 text-xs text-gray-400">
