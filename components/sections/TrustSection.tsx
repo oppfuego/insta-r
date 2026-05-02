@@ -32,11 +32,11 @@ const trustIndicators = [
   },
 ];
 
-const fakeStats = [
-  { label: "Orders Completed", value: "1.2M+" },
-  { label: "Avg. Satisfaction", value: "4.9/5" },
-  { label: "Uptime", value: "99.97%" },
-  { label: "Countries Served", value: "140+" },
+const platformFeatures = [
+  { label: "Multi-Platform Support", value: "3 Platforms" },
+  { label: "Wallet-Based Checkout", value: "Instant" },
+  { label: "Order Tracking Dashboard", value: "Real-time" },
+  { label: "Flexible Package Setup", value: "Custom" },
 ];
 
 export default function TrustSection() {
@@ -46,11 +46,11 @@ export default function TrustSection() {
         <ScrollReveal>
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-              Trusted by{" "}
+              A Simple Workspace for{" "}
               <span className="bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
-                50,000+ Creators
+                Social Growth
               </span>{" "}
-              Worldwide
+              Orders
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-gray-500">
               Security and reliability are at the core of everything we build.
@@ -83,12 +83,12 @@ export default function TrustSection() {
           ))}
         </div>
 
-        {/* Browser mockup with testimonial stats */}
+        {/* Browser mockup with platform features */}
         <ScrollReveal delay={0.2}>
           <div className="mx-auto mt-16 max-w-3xl">
             <BrowserMockup>
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                {fakeStats.map(({ label, value }) => (
+                {platformFeatures.map(({ label, value }) => (
                   <div
                     key={label}
                     className="rounded-xl bg-gradient-to-br from-violet-50 to-indigo-50 p-4 text-center"
@@ -104,47 +104,32 @@ export default function TrustSection() {
               <div className="mt-6 space-y-3">
                 {[
                   {
-                    initials: "AK",
-                    name: "Alex K.",
-                    text: "Best growth service I have ever used. Instant delivery and great support.",
-                    rating: 5,
+                    icon: "💳",
+                    title: "Wallet Top-Up",
+                    text: "Add funds to your balance and use them across all platforms and services.",
                   },
                   {
-                    initials: "MR",
-                    name: "Maria R.",
-                    text: "Transparent pricing, no hidden fees. My followers look completely organic.",
-                    rating: 5,
+                    icon: "📦",
+                    title: "Pick a Package",
+                    text: "Choose from fixed packages or create a custom order with your preferred quantity.",
                   },
                   {
-                    initials: "JT",
-                    name: "James T.",
-                    text: "The balance system is genius. I top up once and use it across all platforms.",
-                    rating: 5,
+                    icon: "📊",
+                    title: "Track Your Orders",
+                    text: "Monitor order status, delivery progress, and transaction history in real time.",
                   },
                 ].map((t) => (
                   <div
-                    key={t.initials}
+                    key={t.title}
                     className="flex items-start gap-3 rounded-lg border border-gray-100 bg-white p-3"
                   >
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-violet-600 to-indigo-600 text-xs font-bold text-white">
-                      {t.initials}
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-violet-50 text-sm">
+                      {t.icon}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-2">
-                        <p className="text-sm font-semibold text-gray-900">
-                          {t.name}
-                        </p>
-                        <div className="flex gap-0.5">
-                          {Array.from({ length: t.rating }).map((_, j) => (
-                            <span
-                              key={j}
-                              className="text-[10px] text-amber-400"
-                            >
-                              ★
-                            </span>
-                          ))}
-                        </div>
-                      </div>
+                      <p className="text-sm font-semibold text-gray-900">
+                        {t.title}
+                      </p>
                       <p className="mt-0.5 text-xs leading-relaxed text-gray-500">
                         {t.text}
                       </p>

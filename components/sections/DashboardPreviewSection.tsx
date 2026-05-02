@@ -4,6 +4,7 @@ import { Wallet, ShoppingBag, TrendingUp, Clock, CheckCircle, Loader, ArrowUpRig
 import Container from "@/components/layout/Container";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { useBalance } from "@/context/BalanceContext";
+import { useAuth } from "@/context/AuthContext";
 import { formatCurrency } from "@/config/currency";
 
 const statusIcon: Record<string, React.ReactNode> = {
@@ -27,11 +28,30 @@ const statusColor: Record<string, string> = {
   failed: "text-red-600",
 };
 
+const demoOrders = [
+  { id: "demo-1", platform: "Instagram", service: "Followers", package: "Growth", quantity: 1000, price: 19.99, status: "completed" as const, date: "2025-04-28" },
+  { id: "demo-2", platform: "TikTok", service: "Views", package: "Growth", quantity: 5000, price: 14.99, status: "in_progress" as const, date: "2025-04-30" },
+  { id: "demo-3", platform: "YouTube", service: "Likes", package: "Starter", quantity: 500, price: 14.99, status: "processing" as const, date: "2025-05-01" },
+];
+
+const demoTransactions = [
+  { id: "demo-t1", type: "top_up" as const, amount: 100, description: "Wallet top-up", date: "2025-04-25" },
+  { id: "demo-t2", type: "purchase" as const, amount: -19.99, description: "Instagram Followers — Growth", date: "2025-04-28" },
+  { id: "demo-t3", type: "top_up" as const, amount: 50, description: "Wallet top-up", date: "2025-04-29" },
+  { id: "demo-t4", type: "purchase" as const, amount: -14.99, description: "TikTok Views — Growth", date: "2025-04-30" },
+];
+
 export default function DashboardPreviewSection() {
   const { balance, displayCurrency, orders, transactions } = useBalance();
+  const { isLoggedIn } = useAuth();
 
-  const recentOrders = orders.slice(0, 3);
-  const recentTxns = transactions.slice(0, 4);
+  const isDemo = !isLoggedIn || (orders.length === 0 && transactions.length === 0);
+
+  const displayBalance = isDemo ? 124.50 : balance;
+  const displayOrders = isDemo ? demoOrders : orders.slice(0, 3);
+  const displayTxns = isDemo ? demoTransactions : transactions.slice(0, 4);
+  const totalOrders = isDemo ? 15 : orders.length;
+  const completedOrders = isDemo ? 12 : orders.filter((o) => o.status === "completed").length;
 
   return (
     <section className="relative py-14 lg:py-20">
@@ -47,6 +67,11 @@ export default function DashboardPreviewSection() {
             <p className="mx-auto mt-4 max-w-2xl text-gray-500">
               Track every order, transaction, and your balance in one clean interface.
             </p>
+            {isDemo && (
+              <p className="mt-2 text-xs text-gray-400">
+                Demo dashboard — example account overview
+              </p>
+            )}
           </div>
         </ScrollReveal>
 
@@ -58,9 +83,9 @@ export default function DashboardPreviewSection() {
               <div className="relative rounded-2xl border border-gray-200 bg-white p-6 shadow-xl shadow-gray-200/50 lg:p-8">
                 <div className="grid gap-4 sm:grid-cols-3 mb-8">
                   {[
-                    { icon: Wallet, label: "Balance", value: formatCurrency(balance, displayCurrency), color: "text-violet-600", bg: "bg-violet-50" },
-                    { icon: ShoppingBag, label: "Total Orders", value: orders.length.toString(), color: "text-indigo-600", bg: "bg-indigo-50" },
-                    { icon: TrendingUp, label: "Completed", value: orders.filter((o) => o.status === "completed").length.toString(), color: "text-emerald-600", bg: "bg-emerald-50" },
+                    { icon: Wallet, label: "Balance", value: formatCurrency(displayBalance, displayCurrency), color: "text-violet-600", bg: "bg-violet-50" },
+                    { icon: ShoppingBag, label: "Total Orders", value: totalOrders.toString(), color: "text-indigo-600", bg: "bg-indigo-50" },
+                    { icon: TrendingUp, label: "Completed", value: completedOrders.toString(), color: "text-emerald-600", bg: "bg-emerald-50" },
                   ].map(({ icon: Icon, label, value, color, bg }) => (
                     <div key={label} className="rounded-xl border border-gray-200 bg-gray-50/50 p-4">
                       <div className="flex items-center gap-3">
@@ -80,7 +105,7 @@ export default function DashboardPreviewSection() {
                   <div>
                     <h3 className="mb-4 text-sm font-semibold text-gray-900">Recent Orders</h3>
                     <div className="flex flex-col gap-3">
-                      {recentOrders.map((order) => (
+                      {displayOrders.map((order) => (
                         <div key={order.id} className="flex items-center justify-between rounded-xl bg-gray-50 p-3">
                           <div className="flex items-center gap-3">
                             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-200/70 text-xs font-bold text-gray-500">
@@ -106,7 +131,7 @@ export default function DashboardPreviewSection() {
                   <div>
                     <h3 className="mb-4 text-sm font-semibold text-gray-900">Recent Transactions</h3>
                     <div className="flex flex-col gap-3">
-                      {recentTxns.map((txn) => (
+                      {displayTxns.map((txn) => (
                         <div key={txn.id} className="flex items-center justify-between rounded-xl bg-gray-50 p-3">
                           <div className="flex items-center gap-3">
                             <div className={`flex h-9 w-9 items-center justify-center rounded-lg ${

@@ -5,12 +5,15 @@ import {
   useContext,
   useState,
   useCallback,
+  useEffect,
   useMemo,
   ReactNode,
 } from "react";
 import { SupportedCurrency } from "@/config/site";
 import { formatCurrency } from "@/config/currency";
 import { useAuth, AuthUser } from "@/context/AuthContext";
+
+const CURRENCY_STORAGE_KEY = "growpulse_currency";
 
 export interface Order {
   id: string;
@@ -82,8 +85,22 @@ const BalanceContext = createContext<BalanceContextType | undefined>(undefined);
 
 export function BalanceProvider({ children }: { children: ReactNode }) {
   const { user, updateUser, isLoggedIn } = useAuth();
-  const [displayCurrency, setDisplayCurrency] =
+  const [displayCurrency, setDisplayCurrencyState] =
     useState<SupportedCurrency>("GBP");
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(CURRENCY_STORAGE_KEY);
+      if (stored === "GBP" || stored === "EUR" || stored === "USD") {
+        setDisplayCurrencyState(stored);
+      }
+    } catch {}
+  }, []);
+
+  const setDisplayCurrency = useCallback((currency: SupportedCurrency) => {
+    setDisplayCurrencyState(currency);
+    try { localStorage.setItem(CURRENCY_STORAGE_KEY, currency); } catch {}
+  }, []);
 
   const balance = user?.balanceGBP ?? 0;
   const orders = useMemo(() => (user ? mapOrders(user) : []), [user]);

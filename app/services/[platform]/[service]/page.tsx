@@ -16,6 +16,7 @@ import {
   Heart,
   Users,
   Eye,
+  SlidersHorizontal,
 } from "lucide-react";
 import Container from "@/components/layout/Container";
 import Button from "@/components/ui/Button";
@@ -27,7 +28,7 @@ import { services, platformInfo, ServiceType } from "@/data/services";
 import { packages } from "@/data/packages";
 import { useBalance } from "@/context/BalanceContext";
 import { useAuth } from "@/context/AuthContext";
-import { formatCurrency } from "@/config/currency";
+import { formatCurrency, convertToGBP, convertFromGBP, getCurrencySymbol } from "@/config/currency";
 import {
   InstagramIcon,
   TikTokIcon,
@@ -58,18 +59,25 @@ const serviceTypeIcons: Record<
   views: Eye,
 };
 
+const PRICE_PER_UNIT_GBP = 0.01;
+const CUSTOM_MIN_GBP = 10;
+
 export default function ServicePage() {
   const params = useParams();
   const platform = params.platform as string;
   const service = params.service as string;
   const pageData = getServicePageData(platform, service);
-  const { displayCurrency, purchaseService } = useBalance();
+  const { displayCurrency, balance, purchaseService } = useBalance();
   const { isLoggedIn } = useAuth();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [purchaseResult, setPurchaseResult] = useState<string | null>(null);
   const [purchaseMessage, setPurchaseMessage] = useState("");
   const [buyingId, setBuyingId] = useState<string | null>(null);
   const [targetUrl, setTargetUrl] = useState("");
+
+  const [customAmount, setCustomAmount] = useState<string>("");
+  const [customError, setCustomError] = useState("");
+  const [buyingCustom, setBuyingCustom] = useState(false);
 
   if (!pageData) {
     return (
@@ -116,6 +124,12 @@ export default function ServicePage() {
     youtube: "YouTube channel or video URL",
   };
 
+  const parsedAmount = parseFloat(customAmount);
+  const hasAmount = !isNaN(parsedAmount) && parsedAmount > 0;
+  const customAmountGBP = hasAmount ? convertToGBP(parsedAmount, displayCurrency) : 0;
+  const isValidCustomAmount = hasAmount && customAmountGBP >= CUSTOM_MIN_GBP;
+  const customUnits = isValidCustomAmount ? Math.floor(customAmountGBP / PRICE_PER_UNIT_GBP) : 0;
+
   const handleBuyPackage = async (pkg: (typeof packages)[0]) => {
     if (!isLoggedIn) {
       setPurchaseResult("auth");
@@ -143,6 +157,59 @@ export default function ServicePage() {
     setPurchaseMessage(result.message);
     if (result.status === "success") {
       setTargetUrl("");
+      setTimeout(() => setPurchaseResult(null), 3000);
+    }
+  };
+
+  const handleBuyCustom = async () => {
+    setCustomError("");
+    if (!customAmount.trim()) {
+      setCustomError("Please enter an amount.");
+      return;
+    }
+    if (!hasAmount) {
+      setCustomError("Please enter a valid amount.");
+      return;
+    }
+    if (customAmountGBP < CUSTOM_MIN_GBP) {
+      const minDisplay = convertFromGBP(CUSTOM_MIN_GBP, displayCurrency);
+      setCustomError(
+        `Minimum custom package amount is ${getCurrencySymbol(displayCurrency)}${minDisplay.toFixed(2)} (£${CUSTOM_MIN_GBP.toFixed(2)} GBP)`
+      );
+      return;
+    }
+    if (!isLoggedIn) {
+      setPurchaseResult("auth");
+      setPurchaseMessage("");
+      return;
+    }
+    if (!targetUrl.trim()) {
+      setPurchaseResult("target");
+      setPurchaseMessage("Please enter a target URL or handle.");
+      return;
+    }
+    if (customAmountGBP > balance) {
+      setPurchaseResult("insufficient");
+      setPurchaseMessage("Insufficient balance. Please top up first.");
+      return;
+    }
+    setBuyingCustom(true);
+    setPurchaseResult(null);
+    setPurchaseMessage("");
+    const result = await purchaseService({
+      platform: platform,
+      service: service,
+      package: "Custom package",
+      quantity: customUnits,
+      price: customAmountGBP,
+      targetUrl: targetUrl.trim(),
+    });
+    setBuyingCustom(false);
+    setPurchaseResult(result.status);
+    setPurchaseMessage(result.message);
+    if (result.status === "success") {
+      setTargetUrl("");
+      setCustomAmount("");
       setTimeout(() => setPurchaseResult(null), 3000);
     }
   };
@@ -488,6 +555,109 @@ export default function ServicePage() {
               </ScrollReveal>
             ))}
           </div>
+
+          {/* Custom Package Calculator */}
+          <ScrollReveal delay={0.3}>
+            <div className="mx-auto mt-12 max-w-lg">
+              <div className="relative overflow-hidden rounded-2xl border-2 border-violet-200 bg-gradient-to-br from-violet-50/80 to-indigo-50/80 p-6 shadow-lg">
+                <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-violet-200/30 blur-3xl" />
+                <div className="relative">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-100">
+                      <SlidersHorizontal size={20} className="text-violet-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900">Custom Package</h3>
+                      <p className="text-xs text-gray-500">Enter your budget, get instant results</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div>
+                      <label className="text-sm font-medium text-gray-700">
+                        Amount ({displayCurrency})
+                      </label>
+                      <div className="relative mt-1.5">
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-400">
+                          {getCurrencySymbol(displayCurrency)}
+                        </span>
+                        <input
+                          type="number"
+                          min={0}
+                          step={0.01}
+                          placeholder={`e.g. ${convertFromGBP(25, displayCurrency).toFixed(2)}`}
+                          value={customAmount}
+                          onChange={(e) => {
+                            setCustomAmount(e.target.value);
+                            setCustomError("");
+                          }}
+                          className={`w-full rounded-xl border bg-white pl-8 pr-4 py-3 text-gray-900 placeholder-gray-400 focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 ${
+                            customError ? "border-red-400" : "border-gray-200"
+                          }`}
+                        />
+                      </div>
+                      <p className="mt-1 text-xs text-gray-400">
+                        Minimum: {getCurrencySymbol(displayCurrency)}{convertFromGBP(CUSTOM_MIN_GBP, displayCurrency).toFixed(2)} {displayCurrency}
+                        {displayCurrency !== "GBP" && ` (£${CUSTOM_MIN_GBP.toFixed(2)} GBP)`}
+                      </p>
+                      {customError && (
+                        <p className="mt-1 text-xs text-red-500">{customError}</p>
+                      )}
+                    </div>
+
+                    {hasAmount && (
+                      <div className="rounded-xl border border-violet-100 bg-white p-4 space-y-3">
+                        {isValidCustomAmount ? (
+                          <>
+                            <div className="text-center py-1">
+                              <p className="text-xs text-gray-400 mb-1">You will receive</p>
+                              <p className="text-3xl font-bold text-gray-900">
+                                {customUnits.toLocaleString()}
+                                <span className="text-lg font-medium text-violet-600 ml-2">{service}</span>
+                              </p>
+                            </div>
+                            <div className="flex items-center justify-between text-xs text-gray-400 pt-2 border-t border-gray-100">
+                              <span>Price per {service === "subscribers" ? "subscriber" : service.replace(/s$/, "")}</span>
+                              <span>{formatCurrency(PRICE_PER_UNIT_GBP, displayCurrency)}</span>
+                            </div>
+                            {displayCurrency !== "GBP" && (
+                              <div className="flex items-center justify-between text-xs text-gray-400">
+                                <span>Amount in GBP</span>
+                                <span>£{customAmountGBP.toFixed(2)}</span>
+                              </div>
+                            )}
+                            {isLoggedIn && (
+                              <div className="flex items-center justify-between text-xs pt-2 border-t border-gray-100">
+                                <span className="text-gray-400">Your balance</span>
+                                <span className={`font-medium ${customAmountGBP > balance ? "text-red-500" : "text-gray-600"}`}>
+                                  {formatCurrency(balance, displayCurrency)}
+                                </span>
+                              </div>
+                            )}
+                          </>
+                        ) : (
+                          <p className="text-center text-sm text-amber-600">
+                            Minimum amount is {getCurrencySymbol(displayCurrency)}{convertFromGBP(CUSTOM_MIN_GBP, displayCurrency).toFixed(2)}
+                          </p>
+                        )}
+                      </div>
+                    )}
+
+                    <Button
+                      fullWidth
+                      onClick={handleBuyCustom}
+                      disabled={buyingCustom}
+                    >
+                      <Wallet size={16} />
+                      {buyingCustom
+                        ? "Processing..."
+                        : "Buy Custom Package with Balance"}
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
         </Container>
       </section>
 

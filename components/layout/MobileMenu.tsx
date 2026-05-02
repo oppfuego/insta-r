@@ -67,23 +67,25 @@ export default function MobileMenu({ onClose }: MobileMenuProps) {
       className="fixed inset-x-0 top-16 z-40 max-h-[calc(100vh-4rem)] overflow-y-auto border-b border-gray-200 bg-white/95 backdrop-blur-xl lg:hidden"
     >
       <nav className="flex flex-col px-4 py-4">
-        {isLoggedIn && (
-          <div className="mb-4 flex items-center justify-between rounded-xl border border-gray-200 bg-gray-50 px-4 py-3">
+        <div className="mb-4 flex items-center justify-between rounded-xl border border-gray-200 bg-gray-50 px-4 py-3">
+          {isLoggedIn ? (
             <div className="flex items-center gap-2">
               <Wallet size={16} className="text-violet-600" />
               <span className="text-sm font-semibold text-gray-900">{formattedBalance}</span>
             </div>
-            <select
-              value={displayCurrency}
-              onChange={(e) => setDisplayCurrency(e.target.value as SupportedCurrency)}
-              className="bg-transparent text-xs text-gray-500 focus:outline-none cursor-pointer"
-            >
-              {siteConfig.supportedCurrencies.map((c) => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </select>
-          </div>
-        )}
+          ) : (
+            <span className="text-xs font-medium text-gray-500">Display Currency</span>
+          )}
+          <select
+            value={displayCurrency}
+            onChange={(e) => setDisplayCurrency(e.target.value as SupportedCurrency)}
+            className="bg-transparent text-xs text-gray-500 focus:outline-none cursor-pointer"
+          >
+            {siteConfig.supportedCurrencies.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+        </div>
 
         {navLinks.map((link) => (
           <Link

@@ -194,20 +194,20 @@ export default function Header() {
 
             {/* Desktop Right */}
             <div className="hidden items-center gap-3 lg:flex">
+              <select
+                value={displayCurrency}
+                onChange={(e) => setDisplayCurrency(e.target.value as SupportedCurrency)}
+                className="rounded-lg border border-gray-200 bg-white px-2 py-1.5 text-xs font-medium text-gray-600 focus:outline-none focus:border-violet-400 cursor-pointer"
+              >
+                {siteConfig.supportedCurrencies.map((c) => (
+                  <option key={c} value={c}>{c}</option>
+                ))}
+              </select>
               {isLoggedIn ? (
                 <>
                   <div className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-1.5">
                     <Wallet size={14} className="text-violet-600" />
                     <span className="text-sm font-semibold text-gray-900">{formattedBalance}</span>
-                    <select
-                      value={displayCurrency}
-                      onChange={(e) => setDisplayCurrency(e.target.value as SupportedCurrency)}
-                      className="bg-transparent text-xs text-gray-500 focus:outline-none cursor-pointer"
-                    >
-                      {siteConfig.supportedCurrencies.map((c) => (
-                        <option key={c} value={c}>{c}</option>
-                      ))}
-                    </select>
                   </div>
                   <Link href="/top-up">
                     <Button size="sm" variant="outline">

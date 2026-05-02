@@ -4,7 +4,7 @@ import Container from "./Container";
 import PaymentMethods from "@/components/ui/PaymentMethods";
 import { siteConfig } from "@/config/site";
 
-const footerLinks = {
+const mainLinks = {
   Product: [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
@@ -22,10 +22,23 @@ const footerLinks = {
     { href: "/cookie-policy", label: "Cookie Policy" },
     { href: "/refund-policy", label: "Refund Policy" },
   ],
-  Platforms: [
-    { href: "/#services", label: "Instagram" },
-    { href: "/#services", label: "TikTok" },
-    { href: "/#services", label: "YouTube" },
+};
+
+const serviceLinks = {
+  Instagram: [
+    { href: "/services/instagram/likes", label: "Likes" },
+    { href: "/services/instagram/followers", label: "Followers" },
+    { href: "/services/instagram/views", label: "Views" },
+  ],
+  TikTok: [
+    { href: "/services/tiktok/likes", label: "Likes" },
+    { href: "/services/tiktok/followers", label: "Followers" },
+    { href: "/services/tiktok/views", label: "Views" },
+  ],
+  YouTube: [
+    { href: "/services/youtube/likes", label: "Likes" },
+    { href: "/services/youtube/subscribers", label: "Subscribers" },
+    { href: "/services/youtube/views", label: "Views" },
   ],
 };
 
@@ -59,7 +72,7 @@ export default function Footer() {
             )}
           </div>
 
-          {Object.entries(footerLinks).map(([category, links]) => (
+          {Object.entries(mainLinks).map(([category, links]) => (
             <div key={category}>
               <h4 className="mb-4 text-sm font-semibold text-gray-900">{category}</h4>
               <ul className="flex flex-col gap-2.5">
@@ -76,6 +89,27 @@ export default function Footer() {
               </ul>
             </div>
           ))}
+
+          <div>
+            <h4 className="mb-4 text-sm font-semibold text-gray-900">Services</h4>
+            {Object.entries(serviceLinks).map(([platform, links]) => (
+              <div key={platform} className="mb-3">
+                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1.5">{platform}</p>
+                <ul className="flex flex-col gap-1.5">
+                  {links.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-sm text-gray-500 transition-colors hover:text-gray-900"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-gray-200 pt-8 sm:flex-row">

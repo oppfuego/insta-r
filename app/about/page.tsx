@@ -16,9 +16,9 @@ const values = [
 ];
 
 const stats = [
-  { value: "50K+", label: "Active Creators" },
-  { value: "2M+", label: "Orders Delivered" },
-  { value: "99.8%", label: "Completion Rate" },
+  { value: "3", label: "Supported Platforms" },
+  { value: "9", label: "Service Categories" },
+  { value: "3", label: "Display Currencies" },
   { value: "24/7", label: "Support Available" },
 ];
 
@@ -54,7 +54,7 @@ const platforms = [
     name: "Instagram",
     icon: InstagramIcon,
     gradient: "from-pink-500 via-rose-500 to-orange-500",
-    metric: "15K+ Active Users",
+    metric: "Likes, Followers & Views",
     description:
       "Boost your followers, likes, and Reels views with targeted delivery that keeps your engagement rate healthy and your profile growing organically.",
   },
@@ -62,7 +62,7 @@ const platforms = [
     name: "TikTok",
     icon: TikTokIcon,
     gradient: "from-cyan-500 via-teal-500 to-emerald-500",
-    metric: "10K+ Active Users",
+    metric: "Likes, Followers & Views",
     description:
       "Accelerate your reach on the fastest-growing platform. Get more views, followers, and shares to push your content onto the For You page.",
   },
@@ -70,7 +70,7 @@ const platforms = [
     name: "YouTube",
     icon: YoutubeIcon,
     gradient: "from-red-500 via-rose-500 to-pink-500",
-    metric: "8K+ Active Users",
+    metric: "Likes, Subscribers & Views",
     description:
       "Grow your subscriber base and watch hours with real engagement. We help your videos surface in search and recommendations.",
   },
@@ -137,13 +137,13 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">Our Story</h2>
             <div className="mx-auto mt-6 max-w-3xl space-y-4 text-sm leading-relaxed text-gray-500">
               <p>
-                GrowPulse started in 2024 when a group of social media creators realized that growing an online presence shouldn&apos;t require expensive agencies or complicated marketing tools.
+                GrowPulse started in 2024 when a group of social media creators realised that growing an online presence shouldn&apos;t require expensive agencies or complicated marketing tools.
               </p>
               <p>
-                We built a platform that puts creators first — a simple balance-based system where you only pay for what you need, with transparent pricing and real-time order tracking. No subscriptions, no hidden fees, no complexity.
+                We built a platform that puts creators first — a simple wallet-based system where you only pay for what you need, with transparent pricing and real-time order tracking. No subscriptions, no hidden fees, no complexity.
               </p>
               <p>
-                Today, we serve over 50,000 active creators across Instagram, TikTok, and YouTube, helping them reach new audiences and build their brands. Our mission remains the same: make social media growth accessible to everyone.
+                Today, GrowPulse supports three major platforms — Instagram, TikTok, and YouTube — with a clean dashboard, multi-currency display, and flexible packages. Our mission remains the same: make social media growth tools accessible to every creator, regardless of budget or experience.
               </p>
             </div>
           </div>
@@ -186,7 +186,7 @@ export default function AboutPage() {
           <div className="mt-20">
             <h2 className="text-center text-2xl font-bold text-gray-900 sm:text-3xl">Platform Coverage</h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-gray-500">
-              One dashboard, three major platforms. Here&apos;s how GrowPulse helps you dominate each one.
+              One dashboard, three major platforms. Here&apos;s how GrowPulse helps you on each one.
             </p>
           </div>
         </ScrollReveal>

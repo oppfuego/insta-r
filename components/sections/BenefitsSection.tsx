@@ -1,6 +1,6 @@
 "use client";
 
-import { Wallet, Globe, Wand2, Zap, LayoutDashboard } from "lucide-react";
+import { Wallet, Globe, Wand2, Zap, LayoutDashboard, History } from "lucide-react";
 import Container from "@/components/layout/Container";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 
@@ -29,6 +29,11 @@ const benefits = [
     icon: LayoutDashboard,
     title: "Clean Dashboard",
     description: "Track every order, view transaction history, monitor your balance — all in a modern, intuitive interface.",
+  },
+  {
+    icon: History,
+    title: "Transparent Wallet History",
+    description: "Every top-up and purchase is recorded in your dashboard, so you can track how your balance is used.",
   },
 ];
 
