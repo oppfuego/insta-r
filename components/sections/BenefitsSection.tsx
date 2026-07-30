@@ -3,6 +3,7 @@
 import { Wallet, Globe, Wand2, Zap, LayoutDashboard, History } from "lucide-react";
 import Container from "@/components/layout/Container";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import { siteConfig } from "@/config/site";
 
 const benefits = [
   {
@@ -46,7 +47,7 @@ export default function BenefitsSection() {
             <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
               Why Choose{" "}
               <span className="bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
-                GrowPulse
+                {siteConfig.name}
               </span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-gray-500">

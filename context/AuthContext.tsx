@@ -8,6 +8,7 @@ import {
   useEffect,
   ReactNode,
 } from "react";
+import { siteConfig } from "@/config/site";
 
 export interface AuthUser {
   _id: string;
@@ -62,7 +63,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const STORAGE_KEY = "growpulse_user";
+const STORAGE_KEY = `${siteConfig.slug}_user`;
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);

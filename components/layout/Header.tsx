@@ -4,9 +4,10 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, Menu, X, Wallet, Plus, ChevronDown, LogOut, User } from "lucide-react";
+import { Menu, X, Wallet, Plus, ChevronDown, LogOut, User } from "lucide-react";
 import Container from "./Container";
 import Button from "@/components/ui/Button";
+import Logo from "@/components/ui/Logo";
 import MobileMenu from "./MobileMenu";
 import { useBalance } from "@/context/BalanceContext";
 import { useAuth } from "@/context/AuthContext";
@@ -98,14 +99,7 @@ export default function Header() {
       >
         <Container>
           <nav className="flex h-16 items-center justify-between lg:h-20">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-indigo-600 shadow-lg shadow-violet-500/25 transition-shadow group-hover:shadow-violet-500/40">
-                <Zap size={18} className="text-white" />
-              </div>
-              <span className="text-xl font-bold text-gray-900">
-                Grow<span className="text-violet-600">Pulse</span>
-              </span>
-            </Link>
+            <Logo />
 
             {/* Desktop Nav */}
             <div className="hidden items-center gap-1 lg:flex">

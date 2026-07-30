@@ -8,7 +8,7 @@ const sections = [
   {
     id: "service-description",
     title: "1. Service Description",
-    content: `GrowPulse is a social media growth platform that provides engagement services including likes, followers, and views for Instagram, TikTok, and YouTube. Our services are designed to help creators and businesses increase their social media presence and reach.
+    content: `${siteConfig.companyName} is a social media growth platform that provides engagement services including likes, followers, and views for Instagram, TikTok, and YouTube. Our services are designed to help creators and businesses increase their social media presence and reach.
 
 All services are delivered through our platform using a prepaid balance system. Users top up their account balance and use it to purchase individual services or packages. We do not offer subscription-based plans.`,
   },
@@ -64,7 +64,7 @@ Balance top-ups are generally non-refundable once credited to your account. Exce
   {
     id: "limitation-of-liability",
     title: "7. Limitation of Liability",
-    content: `GrowPulse provides services on an "as is" basis. While we strive for the highest quality, we cannot guarantee specific results from our services, including but not limited to increased engagement rates, follower retention, or algorithmic benefits on any platform.
+    content: `${siteConfig.companyName} provides services on an "as is" basis. While we strive for the highest quality, we cannot guarantee specific results from our services, including but not limited to increased engagement rates, follower retention, or algorithmic benefits on any platform.
 
 We are not responsible for any actions taken by third-party social media platforms, including but not limited to removal of delivered engagement, account restrictions, or changes to platform algorithms. Use of social media growth services carries inherent risks that users acknowledge and accept.`,
   },
@@ -78,11 +78,11 @@ We recommend reviewing these terms periodically to stay informed of any updates.
   {
     id: "intellectual-property",
     title: "9. Intellectual Property",
-    content: `All content, features, and functionality of the GrowPulse platform — including but not limited to the brand name, logo, website design, software, text, graphics, and user interface — are the exclusive property of GrowPulse and are protected by international copyright, trademark, and other intellectual property laws.
+    content: `All content, features, and functionality of the ${siteConfig.companyName} platform — including but not limited to the brand name, logo, website design, software, text, graphics, and user interface — are the exclusive property of ${siteConfig.companyName} and are protected by international copyright, trademark, and other intellectual property laws.
 
-The GrowPulse name, logo, and all related marks are trademarks of GrowPulse. You may not use, reproduce, or display any of our trademarks without prior written permission. Unauthorised use of our intellectual property may result in legal action.
+The ${siteConfig.companyName} name, logo, and all related marks are trademarks of ${siteConfig.companyName}. You may not use, reproduce, or display any of our trademarks without prior written permission. Unauthorised use of our intellectual property may result in legal action.
 
-You agree not to reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code of any part of the GrowPulse platform. You may not copy, modify, distribute, or create derivative works based on any portion of our platform without express written consent.`,
+You agree not to reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code of any part of the ${siteConfig.companyName} platform. You may not copy, modify, distribute, or create derivative works based on any portion of our platform without express written consent.`,
   },
   {
     id: "governing-law",
@@ -105,7 +105,9 @@ export default function TermsPage() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
           <div className="mx-auto max-w-3xl">
             <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">Terms of Service</h1>
-            <p className="mt-4 text-gray-500">Last updated: April 29, 2026</p>
+            {siteConfig.legalLastUpdated && (
+              <p className="mt-4 text-gray-500">Last updated: {siteConfig.legalLastUpdated}</p>
+            )}
             {siteConfig.companyLegalName && (
               <p className="mt-2 text-sm text-gray-400">
                 Operated by {siteConfig.companyLegalName}

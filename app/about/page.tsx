@@ -5,6 +5,7 @@ import { Target, Shield, Users, Globe, Zap, Award } from "lucide-react";
 import Container from "@/components/layout/Container";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { InstagramIcon, TikTokIcon, YoutubeIcon } from "@/components/ui/SocialIcons";
+import { siteConfig } from "@/config/site";
 
 const values = [
   { icon: Shield, title: "Reliable Service", description: "We deliver on every order with consistent quality and transparent tracking. Your satisfaction is guaranteed." },
@@ -86,11 +87,11 @@ export default function AboutPage() {
             <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
               About{" "}
               <span className="bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
-                GrowPulse
+                {siteConfig.name}
               </span>
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-gray-500">
-              We&apos;re on a mission to make social media growth accessible, affordable, and effortless for every creator. Whether you&apos;re just starting out or scaling your brand, GrowPulse gives you the tools to grow faster.
+              We&apos;re on a mission to make social media growth accessible, affordable, and effortless for every creator. Whether you&apos;re just starting out or scaling your brand, {siteConfig.name} gives you the tools to grow faster.
             </p>
           </div>
         </motion.div>
@@ -137,13 +138,13 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">Our Story</h2>
             <div className="mx-auto mt-6 max-w-3xl space-y-4 text-sm leading-relaxed text-gray-500">
               <p>
-                GrowPulse started in 2024 when a group of social media creators realised that growing an online presence shouldn&apos;t require expensive agencies or complicated marketing tools.
+                {siteConfig.name} started when a group of social media creators realised that growing an online presence shouldn&apos;t require expensive agencies or complicated marketing tools.
               </p>
               <p>
                 We built a platform that puts creators first — a simple wallet-based system where you only pay for what you need, with transparent pricing and real-time order tracking. No subscriptions, no hidden fees, no complexity.
               </p>
               <p>
-                Today, GrowPulse supports three major platforms — Instagram, TikTok, and YouTube — with a clean dashboard, multi-currency display, and flexible packages. Our mission remains the same: make social media growth tools accessible to every creator, regardless of budget or experience.
+                Today, {siteConfig.name} supports three major platforms — Instagram, TikTok, and YouTube — with a clean dashboard, multi-currency display, and flexible packages. Our mission remains the same: make social media growth tools accessible to every creator, regardless of budget or experience.
               </p>
             </div>
           </div>
@@ -154,7 +155,7 @@ export default function AboutPage() {
           <div className="mt-20">
             <h2 className="text-center text-2xl font-bold text-gray-900 sm:text-3xl">Meet the Team</h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-gray-500">
-              The people behind GrowPulse who are dedicated to helping creators succeed.
+              The people behind {siteConfig.name} who are dedicated to helping creators succeed.
             </p>
           </div>
         </ScrollReveal>
@@ -186,7 +187,7 @@ export default function AboutPage() {
           <div className="mt-20">
             <h2 className="text-center text-2xl font-bold text-gray-900 sm:text-3xl">Platform Coverage</h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-gray-500">
-              One dashboard, three major platforms. Here&apos;s how GrowPulse helps you on each one.
+              One dashboard, three major platforms. Here&apos;s how {siteConfig.name} helps you on each one.
             </p>
           </div>
         </ScrollReveal>
@@ -225,7 +226,7 @@ export default function AboutPage() {
                 social media growth
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-gray-500">
-                We believe every creator — regardless of budget, location, or follower count — deserves access to the same growth tools that top influencers and brands use. GrowPulse levels the playing field so that talent and consistency, not marketing spend, determine who gets seen.
+                We believe every creator — regardless of budget, location, or follower count — deserves access to the same growth tools that top influencers and brands use. {siteConfig.name} levels the playing field so that talent and consistency, not marketing spend, determine who gets seen.
               </p>
             </motion.div>
           </div>

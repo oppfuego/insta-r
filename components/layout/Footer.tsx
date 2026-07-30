@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Zap } from "lucide-react";
 import Container from "./Container";
+import Logo from "@/components/ui/Logo";
 import PaymentMethods from "@/components/ui/PaymentMethods";
 import { siteConfig } from "@/config/site";
 
@@ -48,14 +48,7 @@ export default function Footer() {
       <Container className="py-12 lg:py-16">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-6">
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-indigo-600">
-                <Zap size={18} className="text-white" />
-              </div>
-              <span className="text-xl font-bold text-gray-900">
-                Grow<span className="text-violet-600">Pulse</span>
-              </span>
-            </Link>
+            <Logo className="mb-4" withShadow={false} />
             <p className="max-w-sm text-sm leading-relaxed text-gray-500">
               The premium platform for social media growth. Boost your presence on Instagram, TikTok, and YouTube with our reliable services.
             </p>

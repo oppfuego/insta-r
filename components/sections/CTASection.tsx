@@ -5,6 +5,7 @@ import { ArrowRight, Wallet } from "lucide-react";
 import Container from "@/components/layout/Container";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import Button from "@/components/ui/Button";
+import { siteConfig } from "@/config/site";
 
 export default function CTASection() {
   return (
@@ -24,7 +25,7 @@ export default function CTASection() {
                 </span>
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-lg text-gray-600">
-                Join thousands of creators who are already boosting their social media presence with GrowPulse.
+                Join thousands of creators who are already boosting their social media presence with {siteConfig.name}.
               </p>
 
               <div className="mt-8 flex flex-wrap justify-center gap-4">

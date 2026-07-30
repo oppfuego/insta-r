@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { BalanceProvider } from "@/context/BalanceContext";
 import { AuthProvider } from "@/context/AuthContext";
 import FloatingShapes from "@/components/animations/FloatingShapes";
+import { siteConfig } from "@/config/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,9 +19,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GrowPulse — Social Media Growth Platform",
-  description:
-    "Boost your social media presence with premium likes, followers, and views for Instagram, TikTok, and YouTube.",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    template: `%s — ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  openGraph: {
+    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    description: siteConfig.description,
+  },
 };
 
 export default function RootLayout({

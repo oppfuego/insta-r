@@ -90,7 +90,9 @@ export default function CookiePolicyPage() {
             <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">
               Cookie Policy
             </h1>
-            <p className="mt-4 text-gray-500">Last updated: April 29, 2026</p>
+            {siteConfig.legalLastUpdated && (
+              <p className="mt-4 text-gray-500">Last updated: {siteConfig.legalLastUpdated}</p>
+            )}
             {siteConfig.companyLegalName && (
               <p className="mt-2 text-sm text-gray-400">
                 Operated by {siteConfig.companyLegalName}

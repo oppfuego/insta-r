@@ -3,6 +3,7 @@
 import { Rocket, Eye, Megaphone, BadgeCheck, Play, LayoutGrid } from "lucide-react";
 import Container from "@/components/layout/Container";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import { siteConfig } from "@/config/site";
 
 const useCases = [
   {
@@ -52,7 +53,7 @@ export default function TestimonialsSection() {
               </span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-gray-500">
-              Whether you&apos;re starting out or scaling up, here are common ways creators use GrowPulse.
+              Whether you&apos;re starting out or scaling up, here are common ways creators use {siteConfig.name}.
             </p>
           </div>
         </ScrollReveal>

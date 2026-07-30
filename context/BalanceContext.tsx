@@ -9,11 +9,11 @@ import {
   useMemo,
   ReactNode,
 } from "react";
-import { SupportedCurrency } from "@/config/site";
+import { SupportedCurrency, siteConfig } from "@/config/site";
 import { formatCurrency } from "@/config/currency";
 import { useAuth, AuthUser } from "@/context/AuthContext";
 
-const CURRENCY_STORAGE_KEY = "growpulse_currency";
+const CURRENCY_STORAGE_KEY = `${siteConfig.slug}_currency`;
 
 export interface Order {
   id: string;

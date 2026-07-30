@@ -3,6 +3,7 @@
 import { Check, X } from "lucide-react";
 import Container from "@/components/layout/Container";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import { siteConfig } from "@/config/site";
 
 const features = [
   {
@@ -47,12 +48,12 @@ export default function ComparisonSection() {
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
               <span className="bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
-                GrowPulse
+                {siteConfig.name}
               </span>{" "}
               vs Other Platforms
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-gray-500">
-              See why thousands of creators choose GrowPulse over the
+              See why thousands of creators choose {siteConfig.name} over the
               competition.
             </p>
           </div>
@@ -64,7 +65,7 @@ export default function ComparisonSection() {
             <div className="mb-4 grid grid-cols-[1fr_1fr_1fr] gap-4 px-2 text-center text-sm font-semibold text-gray-400 sm:px-4">
               <span className="text-left text-gray-900">Feature</span>
               <span className="bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
-                GrowPulse
+                {siteConfig.name}
               </span>
               <span>Others</span>
             </div>
@@ -81,7 +82,7 @@ export default function ComparisonSection() {
                       </p>
                     </div>
 
-                    {/* GrowPulse side */}
+                    {/* Brand side */}
                     <div className="flex items-center gap-2 justify-center">
                       <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-50">
                         <Check size={14} className="text-emerald-500" />

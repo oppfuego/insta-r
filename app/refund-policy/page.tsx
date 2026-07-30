@@ -8,14 +8,14 @@ const sections = [
   {
     id: "digital-services",
     title: "1. Nature of Digital Services",
-    content: `GrowPulse provides digital social media growth services, including likes, followers, subscribers, and views for Instagram, TikTok, and YouTube. These services are digital in nature and begin processing immediately upon order placement.
+    content: `${siteConfig.companyName} provides digital social media growth services, including likes, followers, subscribers, and views for Instagram, TikTok, and YouTube. These services are digital in nature and begin processing immediately upon order placement.
 
 By placing an order, you acknowledge that the services are digital content that is delivered electronically and that delivery begins immediately after your order is confirmed.`,
   },
   {
     id: "wallet-topups",
     title: "2. Wallet Top-Ups",
-    content: `Funds added to your GrowPulse wallet (balance top-ups) are generally non-refundable once credited to your account. Your wallet balance does not expire and can be used at any time to purchase services across all supported platforms.
+    content: `Funds added to your ${siteConfig.companyName} wallet (balance top-ups) are generally non-refundable once credited to your account. Your wallet balance does not expire and can be used at any time to purchase services across all supported platforms.
 
 Exceptions to this policy may be considered on a case-by-case basis, at our sole discretion, in the following circumstances:
 
@@ -55,7 +55,7 @@ Please note: Refunds for completed orders are issued as wallet balance credits, 
     title: "5. Right of Withdrawal",
     content: `Under the Consumer Contracts Regulations 2013 (UK) and equivalent EU consumer protection laws, you have the right to cancel a contract for digital content within 14 days of purchase.
 
-However, by placing an order on GrowPulse, you expressly consent to the immediate delivery of digital content and acknowledge that you lose your right of withdrawal once the order processing begins.
+However, by placing an order on ${siteConfig.companyName}, you expressly consent to the immediate delivery of digital content and acknowledge that you lose your right of withdrawal once the order processing begins.
 
 For wallet top-ups, you may request cancellation within 14 days provided the funds have not been used. Once funds have been spent on services, the right of withdrawal no longer applies to those funds.`,
   },
@@ -96,7 +96,9 @@ export default function RefundPolicyPage() {
             <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">
               Refund Policy
             </h1>
-            <p className="mt-4 text-gray-500">Last updated: April 29, 2026</p>
+            {siteConfig.legalLastUpdated && (
+              <p className="mt-4 text-gray-500">Last updated: {siteConfig.legalLastUpdated}</p>
+            )}
             {siteConfig.companyLegalName && (
               <p className="mt-2 text-sm text-gray-400">
                 Operated by {siteConfig.companyLegalName}

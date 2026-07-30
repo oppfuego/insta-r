@@ -109,7 +109,9 @@ export default function PrivacyPage() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
           <div className="mx-auto max-w-3xl">
             <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">Privacy Policy</h1>
-            <p className="mt-4 text-gray-500">Last updated: April 29, 2026</p>
+            {siteConfig.legalLastUpdated && (
+              <p className="mt-4 text-gray-500">Last updated: {siteConfig.legalLastUpdated}</p>
+            )}
             {siteConfig.companyLegalName && (
               <p className="mt-2 text-sm text-gray-400">
                 Operated by {siteConfig.companyLegalName}
@@ -143,7 +145,7 @@ export default function PrivacyPage() {
                   ) : title === "10. Contact the Data Controller" ? (
                     <div className="mt-3 text-sm leading-relaxed text-gray-500">
                       <p>
-                        GrowPulse is the data controller responsible for your personal data. If you have any questions
+                        {siteConfig.name} is the data controller responsible for your personal data. If you have any questions
                         about this Privacy Policy or wish to exercise your data protection rights, please contact us.
                       </p>
                       {siteConfig.companyEmail && (

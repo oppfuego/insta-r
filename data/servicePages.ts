@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import { Platform, ServiceType } from "./services";
 
 export interface ServicePageData {
@@ -33,7 +34,7 @@ export const servicePages: ServicePageData[] = [
     howItWorks: [
       { step: "01", title: "Choose Your Package", description: "Select a likes package that fits your campaign. Start small or go big — we scale with you." },
       { step: "02", title: "Enter Your Post Link", description: "Paste the URL of the Instagram post you want to boost. Make sure it is set to public." },
-      { step: "03", title: "Confirm & Pay with Balance", description: "Review your order details and confirm. The cost is deducted instantly from your GrowPulse balance." },
+      { step: "03", title: "Confirm & Pay with Balance", description: `Review your order details and confirm. The cost is deducted instantly from your ${siteConfig.companyName} balance.` },
       { step: "04", title: "Watch Engagement Grow", description: "Likes begin arriving within minutes. Track delivery progress in real-time on your dashboard." },
     ],
     faq: [
@@ -63,7 +64,7 @@ export const servicePages: ServicePageData[] = [
       { step: "01", title: "Pick a Follower Package", description: "Choose from Starter (500), Growth (1,000), or Pro (5,000) — or enter a custom quantity." },
       { step: "02", title: "Enter Your Username", description: "Provide your Instagram handle. Your account must be public for delivery." },
       { step: "03", title: "Pay with Your Balance", description: "Confirm the order and the cost is deducted from your prepaid balance instantly." },
-      { step: "04", title: "Track Your Growth", description: "Watch your follower count climb in real-time. Monitor progress on your GrowPulse dashboard." },
+      { step: "04", title: "Track Your Growth", description: `Watch your follower count climb in real-time. Monitor progress on your ${siteConfig.companyName} dashboard.` },
     ],
     faq: [
       { question: "Are the followers real people?", answer: "Followers come from real-looking accounts with profile photos, posts, and bios. They resemble genuine Instagram users." },
@@ -178,7 +179,7 @@ export const servicePages: ServicePageData[] = [
     howItWorks: [
       { step: "01", title: "Pick a Package", description: "Choose your view count from our preset packages or enter a custom number." },
       { step: "02", title: "Paste Video URL", description: "Share the link to the TikTok video you want to promote." },
-      { step: "03", title: "Deduct from Balance", description: "Confirm and pay from your prepaid GrowPulse balance." },
+      { step: "03", title: "Deduct from Balance", description: `Confirm and pay from your prepaid ${siteConfig.companyName} balance.` },
       { step: "04", title: "Track Performance", description: "Views roll in fast. Monitor real-time delivery on your dashboard." },
     ],
     faq: [
@@ -207,7 +208,7 @@ export const servicePages: ServicePageData[] = [
     howItWorks: [
       { step: "01", title: "Select Package Size", description: "Choose from 500, 1,000, or 5,000 likes — or enter a custom amount." },
       { step: "02", title: "Share Video URL", description: "Paste your YouTube video link. The video must be public or unlisted." },
-      { step: "03", title: "Pay from Balance", description: "Confirm and the cost is deducted from your GrowPulse balance." },
+      { step: "03", title: "Pay from Balance", description: `Confirm and the cost is deducted from your ${siteConfig.companyName} balance.` },
       { step: "04", title: "Watch Likes Grow", description: "Likes begin appearing within minutes. Track delivery on your dashboard." },
     ],
     faq: [
@@ -236,7 +237,7 @@ export const servicePages: ServicePageData[] = [
     howItWorks: [
       { step: "01", title: "Choose a Plan", description: "Select from Starter (100), Growth (500), or Pro (1,000) subscribers." },
       { step: "02", title: "Share Channel URL", description: "Provide your YouTube channel link or handle." },
-      { step: "03", title: "Confirm & Pay", description: "Review your order and pay with your GrowPulse balance." },
+      { step: "03", title: "Confirm & Pay", description: `Review your order and pay with your ${siteConfig.companyName} balance.` },
       { step: "04", title: "Grow Your Channel", description: "Subscribers start arriving within hours. Full delivery completes in 2-7 days." },
     ],
     faq: [

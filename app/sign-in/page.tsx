@@ -4,11 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { LogIn, Zap } from "lucide-react";
+import { LogIn } from "lucide-react";
 import Container from "@/components/layout/Container";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { useAuth } from "@/context/AuthContext";
+import { LogoMark } from "@/components/ui/Logo";
+import { siteConfig } from "@/config/site";
 
 export default function SignInPage() {
   const router = useRouter();
@@ -56,14 +58,12 @@ export default function SignInPage() {
             transition={{ duration: 0.5 }}
           >
             <div className="text-center">
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-600 to-indigo-600 shadow-lg shadow-violet-500/25">
-                <Zap size={24} className="text-white" />
-              </div>
+              <LogoMark size={56} className="mx-auto mb-4 rounded-2xl shadow-lg shadow-violet-500/25" />
               <h1 className="text-2xl font-bold text-gray-900">
                 Welcome back
               </h1>
               <p className="mt-2 text-sm text-gray-500">
-                Sign in to your GrowPulse account
+                Sign in to your {siteConfig.name} account
               </p>
             </div>
 

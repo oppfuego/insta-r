@@ -33,6 +33,18 @@ export const env = {
     return optional("COMPANY_EMAIL", process.env.EMAIL_FROM || "");
   },
   get COMPANY_NAME() {
-    return optional("NEXT_PUBLIC_COMPANY_NAME", "GrowPulse");
+    return optional("NEXT_PUBLIC_COMPANY_NAME", "TiwaPulse");
+  },
+  get COMPANY_LEGAL_NAME() {
+    return optional("NEXT_PUBLIC_COMPANY_LEGAL_NAME", "");
+  },
+  get COMPANY_ADDRESS() {
+    return optional("NEXT_PUBLIC_COMPANY_ADDRESS", "");
+  },
+  get COMPANY_PHONE() {
+    return optional("NEXT_PUBLIC_COMPANY_PHONE", "");
+  },
+  get SITE_DOMAIN() {
+    return optional("NEXT_PUBLIC_SITE_DOMAIN", "tiwapulse.com");
   },
 };

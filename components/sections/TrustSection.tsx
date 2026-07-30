@@ -4,6 +4,7 @@ import { ShieldCheck, Lock, KeyRound, Scale } from "lucide-react";
 import Container from "@/components/layout/Container";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { BrowserMockup } from "@/components/ui/Placeholder";
+import { siteConfig } from "@/config/site";
 
 const trustIndicators = [
   {
@@ -55,7 +56,7 @@ export default function TrustSection() {
             <p className="mx-auto mt-4 max-w-2xl text-gray-500">
               Security and reliability are at the core of everything we build.
               Your data, your money, and your social accounts are always safe
-              with GrowPulse.
+              with {siteConfig.name}.
             </p>
           </div>
         </ScrollReveal>
