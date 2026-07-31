@@ -3,6 +3,7 @@ import Container from "./Container";
 import Logo from "@/components/ui/Logo";
 import PaymentMethods from "@/components/ui/PaymentMethods";
 import { siteConfig } from "@/config/site";
+import { legalDocuments } from "@/data/legal";
 
 const mainLinks = {
   Product: [
@@ -16,12 +17,10 @@ const mainLinks = {
     { href: "/faq", label: "FAQ" },
     { href: "/contact", label: "Contact" },
   ],
-  Legal: [
-    { href: "/terms", label: "Terms of Service" },
-    { href: "/privacy", label: "Privacy Policy" },
-    { href: "/cookie-policy", label: "Cookie Policy" },
-    { href: "/refund-policy", label: "Refund Policy" },
-  ],
+  Legal: legalDocuments.map(({ document, label }) => ({
+    href: document.route,
+    label,
+  })),
 };
 
 const serviceLinks = {

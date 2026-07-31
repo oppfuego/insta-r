@@ -35,8 +35,6 @@ export const siteConfig = {
   companyAddress: process.env.NEXT_PUBLIC_COMPANY_ADDRESS || "",
   companyEmail: process.env.NEXT_PUBLIC_COMPANY_EMAIL || "",
   companyPhone: process.env.NEXT_PUBLIC_COMPANY_PHONE || "",
-  // Optional — legal pages hide the "Last updated" line when this is unset.
-  legalLastUpdated: process.env.NEXT_PUBLIC_LEGAL_LAST_UPDATED || "",
   testMode: process.env.NEXT_PUBLIC_PAYMENT_TEST_MODE === "true",
   baseCurrency: (process.env.NEXT_PUBLIC_BASE_CURRENCY as "GBP" | "EUR" | "USD") || "GBP",
   supportedCurrencies: ["GBP", "EUR", "USD"] as const,
